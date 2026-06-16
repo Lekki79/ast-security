@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>АСТ — Системи безпеки та електромонтаж у Києві | Відеоспостереження, сигналізація, контроль доступу</title>
+<meta name="description" content="АСТ — встановлення систем відеоспостереження, охоронної сигналізації, контролю доступу та електромонтаж у Києві. 20+ років досвіду. Безкоштовний виїзд. Гарантія 12 місяців. Тел: +380 95 508 64 69"/>
+<meta name="keywords" content="відеоспостереження Київ, монтаж камер Київ, охоронна сигналізація Київ, контроль доступу, електромонтаж Київ, Ajax сигналізація, встановлення камер, АСТ безпека"/>
+<meta name="robots" content="index, follow"/>
+<meta property="og:title" content="АСТ — Системи безпеки та електромонтаж у Києві"/>
+<meta property="og:description" content="Встановлення відеоспостереження, сигналізації, контролю доступу та електромонтаж. 20+ років досвіду. Безкоштовний виїзд по Києву."/>
+<meta property="og:type" content="website"/>
+<meta name="geo.region" content="UA-30"/>
+<meta name="geo.placename" content="Київ"/>
+<link rel="canonical" href="https://ast-security.com.ua/"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0f1c2e;
+  --navy2:#162337;
+  --accent:#ff6b2b;
+  --accent-h:#ff8c42;
+  --text:#1a2332;
+  --muted:#6b7a90;
+  --light:#f5f7fa;
+  --white:#ffffff;
+  --border:#e4e8ef;
+  --radius:14px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,-apple-system,sans-serif;color:var(--text);background:#fff;line-height:1.6;-webkit-font-smoothing:antialiased}
+
+/* ── ANIMATIONS ── */
+.fade-up{opacity:0;transform:translateY(28px);transition:opacity .65s cubic-bezier(.22,1,.36,1),transform .65s cubic-bezier(.22,1,.36,1)}
+.fade-up.visible{opacity:1;transform:none}
+.fade-up:nth-child(2){transition-delay:.1s}
+.fade-up:nth-child(3){transition-delay:.2s}
+.fade-up:nth-child(4){transition-delay:.3s}
+.fade-up:nth-child(5){transition-delay:.4s}
+.fade-up:nth-child(6){transition-delay:.5s}
+
+/* ── HEADER ── */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  background:rgba(255,255,255,0.97);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  box-shadow:0 1px 12px rgba(0,0,0,0.06);
+}
+.hdr{
+  max-width:1240px;margin:0 auto;padding:0 28px;
+  height:70px;display:flex;align-items:center;justify-content:space-between;gap:24px;
+}
+.logo{
+  font-size:1.75rem;font-weight:900;letter-spacing:4px;
+  color:var(--navy);text-decoration:none;flex-shrink:0;
+  font-family:'Inter',sans-serif;
+}
+.logo span{color:var(--accent)}
+nav{display:flex;gap:28px}
+nav a{
+  color:var(--muted);text-decoration:none;font-size:.88rem;
+  font-weight:600;transition:color .2s;white-space:nowrap;
+}
+nav a:hover{color:var(--navy)}
+.hdr-phones{display:flex;flex-direction:column;align-items:flex-end;gap:2px}
+.hdr-phone{
+  color:var(--navy);text-decoration:none;font-weight:700;
+  font-size:.9rem;transition:color .2s;white-space:nowrap;
+}
+.hdr-phone:hover{color:var(--accent)}
+.hdr-phone small{font-size:.72rem;color:var(--muted);font-weight:400}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;
+  background:var(--navy);
+  position:relative;overflow:hidden;
+  display:flex;align-items:center;
+  padding-top:70px;
+}
+.hero-img{
+  position:absolute;inset:0;
+  background:url('03AFB47A-2276-4C7C-8133-3E356BC622AF.jpg') center 25%/cover no-repeat;
+  opacity:.42;
+  transform:scale(1.04);
+  transition:transform 8s ease-out;
+}
+.hero-img.loaded{transform:scale(1)}
+.hero-grad{
+  position:absolute;inset:0;
+  background:linear-gradient(105deg,rgba(15,28,46,.98) 38%,rgba(15,28,46,.4) 100%);
+}
+.hero-inner{
+  position:relative;max-width:1240px;margin:0 auto;
+  padding:60px 28px;width:100%;
+  display:grid;grid-template-columns:1fr 420px;gap:64px;align-items:center;
+}
+.hero-left{}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(232,66,10,.15);border:1px solid rgba(232,66,10,.35);
+  color:#ff7043;padding:5px 15px;border-radius:100px;
+  font-size:.78rem;font-weight:700;letter-spacing:.8px;text-transform:uppercase;
+  margin-bottom:24px;
+}
+.hero-badge i{
+  width:6px;height:6px;background:var(--accent);border-radius:50%;
+  animation:blink 2s infinite;
+}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.hero h1{
+  font-size:clamp(2.2rem,4.8vw,3.8rem);font-weight:900;
+  line-height:1.08;color:#fff;margin-bottom:24px;
+  letter-spacing:-0.5px;
+}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero-desc{
+  color:rgba(255,255,255,.65);font-size:1.08rem;
+  max-width:500px;margin-bottom:40px;line-height:1.7;
+}
+.hero-stats{display:flex;gap:40px;flex-wrap:wrap}
+.hstat-num{font-size:2.2rem;font-weight:900;color:#fff;line-height:1}
+.hstat-num span{color:var(--accent)}
+.hstat-label{font-size:.75rem;color:rgba(255,255,255,.5);margin-top:3px;font-weight:500}
+
+/* ── HERO FORM ── */
+.hero-form-box{
+  background:#fff;border-radius:24px;padding:40px 36px;
+  box-shadow:0 32px 96px rgba(0,0,0,.4),0 0 0 1px rgba(255,255,255,.08);
+}
+.hero-form-box h3{font-size:1.25rem;font-weight:800;color:var(--navy);margin-bottom:6px}
+.hero-form-box p{font-size:.85rem;color:var(--muted);margin-bottom:24px}
+.fg{margin-bottom:14px}
+.fg label{display:block;font-size:.78rem;font-weight:600;color:var(--muted);margin-bottom:5px}
+.fg input,.fg select,.fg textarea{
+  width:100%;border:1.5px solid var(--border);
+  background:#fafbfc;color:var(--text);
+  padding:11px 15px;border-radius:9px;
+  font-size:.92rem;font-family:inherit;outline:none;
+  transition:border-color .2s,box-shadow .2s;
+}
+.fg input:focus,.fg select:focus,.fg textarea:focus{
+  border-color:var(--accent);
+  box-shadow:0 0 0 3px rgba(232,66,10,.1);
+  background:#fff;
+}
+.fg textarea{resize:vertical;min-height:80px}
+.fg select option{background:#fff}
+.form-btn{
+  width:100%;background:var(--accent);color:#fff;border:none;
+  padding:14px;border-radius:9px;font-size:1rem;font-weight:700;
+  cursor:pointer;transition:background .2s,transform .15s;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+}
+.form-btn:hover{background:var(--accent-h);transform:translateY(-1px)}
+.or-line{
+  text-align:center;color:var(--muted);font-size:.78rem;
+  margin:12px 0;position:relative;
+}
+.or-line::before,.or-line::after{
+  content:'';position:absolute;top:50%;width:44%;height:1px;background:var(--border);
+}
+.or-line::before{left:0}.or-line::after{right:0}
+.tg-btn{
+  display:flex;align-items:center;justify-content:center;gap:9px;
+  width:100%;background:#229ED9;color:#fff;border:none;
+  padding:12px;border-radius:9px;font-size:.92rem;font-weight:600;
+  cursor:pointer;text-decoration:none;transition:background .2s;
+}
+.tg-btn:hover{background:#1a8fc0}
+.form-success{
+  display:none;text-align:center;padding:20px;
+  background:#f0fdf4;border:1px solid #bbf7d0;
+  border-radius:9px;color:#166534;font-size:.9rem;margin-top:12px;
+}
+
+/* ── STRIP ── */
+.strip{
+  background:#1e2432;
+  padding:22px 28px;
+  border-top:1px solid rgba(255,255,255,.06);
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.strip-inner{
+  max-width:1240px;margin:0 auto;
+  display:flex;justify-content:space-around;align-items:center;
+  flex-wrap:wrap;gap:16px;
+}
+.strip-item{text-align:center;color:#fff}
+.strip-num{font-size:1.8rem;font-weight:900;line-height:1;color:#fff}
+.strip-label{font-size:.75rem;color:rgba(255,255,255,.5);margin-top:2px}
+
+/* ── SECTION BASE ── */
+section{padding:96px 28px}
+.container{max-width:1240px;margin:0 auto}
+.stag{
+  display:inline-block;color:var(--accent);font-size:.75rem;
+  font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;
+}
+.stitle{font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:900;color:var(--navy);margin-bottom:14px;line-height:1.15;letter-spacing:-.4px}
+.ssub{color:var(--muted);font-size:1rem;max-width:520px;margin-bottom:52px}
+
+/* ── SERVICES ── */
+#services{background:#13192a}
+#services .stitle{color:#fff}
+#services .ssub{color:rgba(255,255,255,.45)}
+.svc-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+}
+.svc-card{
+  background:#1a2236;border-radius:18px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.07);
+  transition:box-shadow .3s cubic-bezier(.22,1,.36,1),transform .3s cubic-bezier(.22,1,.36,1),border-color .3s;
+  display:flex;flex-direction:column;
+}
+.svc-card:hover{
+  box-shadow:0 24px 64px rgba(0,0,0,.5),0 0 0 1px rgba(255,107,43,.6),0 0 48px rgba(255,107,43,.22),0 0 96px rgba(255,107,43,.1);
+  transform:translateY(-8px);
+  border-color:rgba(255,107,43,.6);
+}
+.svc-img{
+  width:100%;height:220px;object-fit:cover;
+  display:block;transition:transform .4s;
+}
+.svc-card:hover .svc-img{transform:scale(1.04)}
+.svc-img-wrap{overflow:hidden;position:relative}
+.svc-img-wrap::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:60px;
+  background:linear-gradient(transparent,rgba(0,0,0,.25));
+}
+.svc-body{padding:28px;flex:1;display:flex;flex-direction:column}
+.svc-body h3{font-size:1.12rem;font-weight:800;color:#fff;margin-bottom:10px;letter-spacing:-.2px}
+.svc-body p{color:rgba(255,255,255,.5);font-size:.88rem;line-height:1.7;margin-bottom:18px;flex:1}
+.svc-tags{display:flex;flex-wrap:wrap;gap:6px}
+.stag-item{
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
+  color:rgba(255,255,255,.5);font-size:.72rem;padding:3px 10px;border-radius:100px;font-weight:500;
+}
+.svc-row2{grid-column:span 3;display:grid;grid-template-columns:1fr 1fr;gap:24px}
+
+/* ── WHY ── */
+#why{background:#fff}
+.why-wrap{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.why-left{}
+.why-left .ssub{margin-bottom:0}
+.why-img{
+  width:100%;border-radius:var(--radius);
+  object-fit:cover;height:420px;
+  display:block;margin-top:32px;
+}
+.why-right{display:flex;flex-direction:column;gap:20px}
+.why-item{
+  display:flex;gap:18px;align-items:flex-start;
+  padding:24px;background:var(--light);border-radius:14px;
+  border:1px solid var(--border);
+  transition:border-color .25s,box-shadow .25s,transform .25s;
+}
+.why-item:hover{border-color:rgba(232,66,10,.25);box-shadow:0 8px 24px rgba(0,0,0,.07);transform:translateX(4px)}
+.why-icon{
+  width:46px;height:46px;min-width:46px;
+  background:rgba(232,66,10,.1);border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.2rem;
+}
+.why-item h4{font-size:.97rem;font-weight:700;color:var(--navy);margin-bottom:4px}
+.why-item p{font-size:.84rem;color:var(--muted);line-height:1.6}
+
+/* ── PROCESS ── */
+#process{background:var(--navy)}
+#process .stag{color:#ff7043}
+#process .stitle{color:#fff}
+#process .ssub{color:rgba(255,255,255,.5)}
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;position:relative}
+.steps::before{
+  content:'';position:absolute;top:32px;left:10%;right:10%;
+  height:1px;background:rgba(255,255,255,.1);
+}
+.step{text-align:center;padding:0 8px}
+.step-circle{
+  width:72px;height:72px;
+  border:2px solid rgba(232,66,10,.35);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  margin:0 auto 20px;
+  font-size:1.4rem;font-weight:900;color:var(--accent);
+  background:rgba(232,66,10,.07);
+  position:relative;z-index:1;
+  transition:background .25s,border-color .25s,transform .25s;
+}
+.step:hover .step-circle{background:rgba(232,66,10,.15);border-color:var(--accent);transform:scale(1.08)}
+.step h4{font-size:.92rem;font-weight:700;color:#fff;margin-bottom:8px}
+.step p{font-size:.8rem;color:rgba(255,255,255,.45);line-height:1.5}
+
+/* ── CONTACT ── */
+#contact{background:var(--light)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.cinfo h2{font-size:1.9rem;font-weight:900;color:var(--navy);margin-bottom:14px}
+.cinfo-desc{color:var(--muted);margin-bottom:36px}
+.clist{display:flex;flex-direction:column;gap:16px}
+.citem{
+  display:flex;align-items:center;gap:16px;
+  background:#fff;border:1px solid var(--border);
+  border-radius:12px;padding:16px 20px;
+}
+.citem-icon{
+  width:42px;height:42px;min-width:42px;
+  background:rgba(232,66,10,.08);border-radius:9px;
+  display:flex;align-items:center;justify-content:center;font-size:1.1rem;
+}
+.citem-lbl{font-size:.72rem;color:var(--muted);font-weight:600;margin-bottom:2px}
+.citem-val{font-weight:700;font-size:.95rem;color:var(--navy)}
+.citem-val a{color:var(--navy);text-decoration:none;transition:color .2s}
+.citem-val a:hover{color:var(--accent)}
+.cform{
+  background:#fff;border:1px solid var(--border);
+  border-radius:var(--radius);padding:38px;
+  box-shadow:0 8px 32px rgba(0,0,0,.06);
+}
+.cform h3{font-size:1.25rem;font-weight:800;color:var(--navy);margin-bottom:6px}
+.cform p{font-size:.84rem;color:var(--muted);margin-bottom:24px}
+
+/* ── MAP ── */
+.map-wrap{
+  margin-top:48px;border-radius:var(--radius);overflow:hidden;
+  border:1px solid var(--border);height:280px;
+}
+.map-wrap iframe{width:100%;height:100%;border:0;display:block;}
+
+/* ── FOOTER ── */
+footer{background:var(--navy);padding:64px 28px 32px;border-top:3px solid var(--accent)}
+.footer-inner{max-width:1240px;margin:0 auto}
+.footer-top{
+  display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;
+  gap:48px;margin-bottom:48px;padding-bottom:48px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.footer-logo{
+  font-size:1.7rem;font-weight:900;letter-spacing:4px;
+  color:#fff;display:block;margin-bottom:12px;
+}
+.footer-logo span{color:var(--accent)}
+.footer-tagline{color:rgba(255,255,255,.4);font-size:.85rem;line-height:1.6}
+.footer-col{display:flex;flex-direction:column;gap:10px}
+.footer-col-title{color:#fff;font-weight:700;font-size:.82rem;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px}
+.footer-col a{color:rgba(255,255,255,.45);text-decoration:none;font-size:.85rem;transition:color .2s}
+.footer-col a:hover{color:#fff}
+.footer-bottom{
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:8px;
+}
+.footer-bottom p{color:rgba(255,255,255,.25);font-size:.78rem}
+@media(max-width:900px){
+  .footer-top{grid-template-columns:1fr 1fr;gap:32px}
+}
+@media(max-width:500px){
+  .footer-top{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column;text-align:center}
+}
+
+/* ── STICKY MOBILE CTA ── */
+.sticky-cta{
+  display:none;
+  position:fixed;bottom:0;left:0;right:0;z-index:300;
+  background:#fff;border-top:1px solid var(--border);
+  padding:12px 16px;gap:10px;
+}
+.sticky-cta a{
+  flex:1;padding:12px;border-radius:9px;
+  font-size:.88rem;font-weight:700;text-align:center;
+  text-decoration:none;display:flex;align-items:center;justify-content:center;gap:7px;
+}
+.scta-call{background:var(--accent);color:#fff}
+.scta-tg{background:#229ED9;color:#fff}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1000px){
+  .hero-inner{grid-template-columns:1fr;gap:40px}
+  .hero-form-box{max-width:500px}
+  .svc-grid{grid-template-columns:1fr 1fr}
+  .svc-row2{grid-column:span 2;grid-template-columns:1fr 1fr}
+  .why-wrap{grid-template-columns:1fr;gap:36px}
+  .why-img{height:280px}
+  .steps{grid-template-columns:1fr 1fr;gap:28px}
+  .steps::before{display:none}
+  .contact-grid{grid-template-columns:1fr;gap:36px}
+  nav{display:none}
+}
+@media(max-width:640px){
+  section{padding:64px 20px}
+  .svc-grid{grid-template-columns:1fr}
+  .svc-row2{grid-column:span 1;grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+  .strip-inner{gap:24px}
+  .hero-stats{gap:24px}
+  .sticky-cta{display:flex}
+  body{padding-bottom:70px}
+  .hdr-phones .hdr-phone:last-child{display:none}
+}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "АСТ",
+  "description": "Встановлення систем відеоспостереження, охоронної сигналізації, контролю доступу та електромонтаж у Києві",
+  "telephone": ["+380955086469", "+380667049436"],
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "просп. Повітряних Сил, 72, оф. 45",
+    "addressLocality": "Київ",
+    "addressCountry": "UA"
+  },
+  "openingHours": "Mo-Sa 08:00-20:00",
+  "priceRange": "$$",
+  "email": "ast2000@i.ua",
+  "areaServed": "Київ та Київська область"
+}
+</script>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="hdr">
+    <a href="#" class="logo">А<span>С</span>Т</a>
+    <nav>
+      <a href="#services">Послуги</a>
+      <a href="#why">Переваги</a>
+      <a href="#process">Як працюємо</a>
+      <a href="#contact">Контакти</a>
+    </nav>
+    <div class="hdr-phones">
+      <a href="tel:+380955086469" class="hdr-phone">+380 (95) 508 64 69</a>
+      <a href="tel:+380667049436" class="hdr-phone">+380 (66) 704 94 36</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-img"></div>
+  <div class="hero-grad"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <h1>Безпека вашого<br>об'єкта — <em>наша<br>відповідальність</em></h1>
+      <p class="hero-desc">Встановлюємо системи відеоспостереження, сигналізації, контролю доступу та виконуємо електромонтажні роботи будь-якої складності.</p>
+    </div>
+
+    <div class="hero-form-box">
+      <h3>Безкоштовна консультація</h3>
+      <p>Відповімо протягом 30 хвилин</p>
+      <form id="hform" onsubmit="submitFormspree(event,'hform','hsuccess')">
+        <input type="hidden" name="_subject" value="Нова заявка з сайту АСТ"/>
+        <input type="hidden" name="Форма" value="Головна сторінка"/>
+        <div class="fg">
+          <label>Ваше ім'я</label>
+          <input type="text" name="name" placeholder="Іван Петренко" required/>
+        </div>
+        <div class="fg">
+          <label>Телефон *</label>
+          <input type="tel" name="phone" placeholder="+380 __ ___ __ __" required/>
+        </div>
+        <div class="fg">
+          <label>Послуга</label>
+          <select name="service">
+            <option value="">Оберіть послугу</option>
+            <option>Відеоспостереження</option>
+            <option>Охоронна сигналізація</option>
+            <option>Контроль доступу</option>
+            <option>Електропроводка</option>
+            <option>Електрощити та автомати</option>
+            <option>Комплексний проєкт</option>
+          </select>
+        </div>
+        <button type="submit" class="form-btn">📞 Залишити заявку</button>
+        <div class="or-line">або</div>
+        <a href="https://t.me/ast_security_kyiv" target="_blank" class="tg-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L8.48 14.46l-2.95-.924c-.64-.203-.654-.64.135-.954l11.57-4.461c.537-.194 1.006.131.827.127z"/></svg>
+          Написати в Telegram
+        </a>
+        <div class="form-success" id="hsuccess">✅ Дякуємо! Зв'яжемося найближчим часом.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  <div class="strip-inner">
+    <div class="strip-item fade-up"><div class="strip-num">20+</div><div class="strip-label">Років на ринку</div></div>
+    <div class="strip-item fade-up"><div class="strip-num">500+</div><div class="strip-label">Виконаних проєктів</div></div>
+    <div class="strip-item fade-up"><div class="strip-num">12 міс</div><div class="strip-label">Офіційна гарантія</div></div>
+    <div class="strip-item fade-up"><div class="strip-num">24/7</div><div class="strip-label">Підтримка клієнтів</div></div>
+    <div class="strip-item fade-up"><div class="strip-num">0 ₴</div><div class="strip-label">Виїзд та кошторис</div></div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <span class="stag">Що ми робимо</span>
+    <h2 class="stitle">Комплексний захист і електрика</h2>
+    <p class="ssub">Повний цикл робіт — від проєктування до введення в експлуатацію та подальшого обслуговування.</p>
+    <div class="svc-grid">
+
+      <div class="svc-card fade-up">
+        <div class="svc-img-wrap">
+          <img src="5AD3D4D0-5D6D-49A7-865A-0EAE6B352653.jpg" alt="Відеоспостереження" class="svc-img"/>
+        </div>
+        <div class="svc-body">
+          <h3>📷 Відеоспостереження</h3>
+          <p>Проєктування та монтаж систем відеоспостереження для будь-яких об'єктів: квартири, офіси, склади, виробничі приміщення.</p>
+          <div class="svc-tags">
+            <span class="stag-item">IP-камери</span>
+            <span class="stag-item">Нічний режим</span>
+            <span class="stag-item">Хмарний запис</span>
+            <span class="stag-item">Перегляд з телефону</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="svc-card fade-up">
+        <div class="svc-img-wrap">
+          <img src="0DC86860-9C7A-423F-B088-F5B7363C165E-2.jpg" alt="Охоронна сигналізація" class="svc-img"/>
+        </div>
+        <div class="svc-body">
+          <h3>🔔 Охоронна сигналізація</h3>
+          <p>Встановлення сучасних охоронних систем з можливістю підключення до пульту централізованої охорони.</p>
+          <div class="svc-tags">
+            <span class="stag-item">Датчики руху</span>
+            <span class="stag-item">GSM / WiFi</span>
+            <span class="stag-item">Пожежна сигналізація</span>
+            <span class="stag-item">Сповіщення на телефон</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="svc-card fade-up">
+        <div class="svc-img-wrap">
+          <img src="82D58F09-0998-4CF8-A636-E6B875AC6A3E-2.jpg" alt="Контроль доступу" class="svc-img"/>
+        </div>
+        <div class="svc-body">
+          <h3>🚪 Контроль доступу</h3>
+          <p>Системи обмеження та контролю доступу для офісів, підприємств, житлових комплексів та приватних будинків.</p>
+          <div class="svc-tags">
+            <span class="stag-item">Електронні замки</span>
+            <span class="stag-item">Домофони</span>
+            <span class="stag-item">Біометрія</span>
+            <span class="stag-item">Шлагбауми</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="svc-row2">
+        <div class="svc-card fade-up">
+          <div class="svc-img-wrap">
+            <img src="A8B225C8-8892-4359-8940-71CBF22847A2-2.jpg" style="object-fit:contain;background:#f0f2f5" alt="Електропроводка" class="svc-img"/>
+          </div>
+          <div class="svc-body">
+            <h3>⚡ Електропроводка</h3>
+            <p>Монтаж і заміна електропроводки «під ключ» у квартирах, будинках, офісах та комерційних приміщеннях.</p>
+            <div class="svc-tags">
+              <span class="stag-item">Штроблення</span>
+              <span class="stag-item">Прокладка кабелю</span>
+              <span class="stag-item">Розетки та вимикачі</span>
+              <span class="stag-item">Освітлення</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="svc-card fade-up">
+          <div class="svc-img-wrap">
+            <img src="7117B9D0-8FEF-4651-962E-4B30E2AAD10B-2.jpg" style="object-fit:contain;background:#f0f2f5" alt="Електрощити" class="svc-img"/>
+          </div>
+          <div class="svc-body">
+            <h3>🔌 Електрощити та автомати</h3>
+            <p>Встановлення, заміна та модернізація розподільних електрощитів будь-якої складності для житлових і комерційних об'єктів.</p>
+            <div class="svc-tags">
+              <span class="stag-item">Монтаж щитів</span>
+              <span class="stag-item">УЗО та диференціали</span>
+              <span class="stag-item">Лічильники</span>
+              <span class="stag-item">Заземлення</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section id="why">
+  <div class="container">
+    <div class="why-wrap">
+      <div class="why-left">
+        <span class="stag">Чому обирають нас</span>
+        <h2 class="stitle">Якість, яку можна перевірити</h2>
+        <p class="ssub">Несемо відповідальність за кожен об'єкт — від першого дзвінка до гарантійного обслуговування.</p>
+        <img src="03AFB47A-2276-4C7C-8133-3E356BC622AF.jpg" alt="Монтаж системи безпеки" class="why-img"/>
+      </div>
+      <div class="why-right">
+        <div class="why-item fade-up">
+          <div class="why-icon">👷</div>
+          <div>
+            <h4>Досвідчена команда</h4>
+            <p>Всі фахівці мають профільну освіту та допуск до електромонтажних робіт. 20+ років досвіду на ринку.</p>
+          </div>
+        </div>
+        <div class="why-item fade-up">
+          <div class="why-icon">🛡️</div>
+          <div>
+            <h4>Гарантія 12 місяців</h4>
+            <p>Надаємо офіційну гарантію на всі виконані роботи. Безкоштовне усунення неполадок протягом гарантійного терміну.</p>
+          </div>
+        </div>
+        <div class="why-item fade-up">
+          <div class="why-icon">💰</div>
+          <div>
+            <h4>Фіксована ціна</h4>
+            <p>Оціночна вартість фіксується до початку робіт. Ніяких прихованих доплат та раптових змін у рахунку.</p>
+          </div>
+        </div>
+        <div class="why-item fade-up">
+          <div class="why-icon">🚗</div>
+          <div>
+            <h4>Безкоштовний виїзд</h4>
+            <p>Виїжджаємо на об'єкт для безкоштовного огляду та складання кошторису по всьому Києву та області.</p>
+          </div>
+        </div>
+        <div class="why-item fade-up">
+          <div class="why-icon">✅</div>
+          <div>
+            <h4>Офіційні постачальники</h4>
+            <p>Тільки сертифіковане обладнання від офіційних дистриб'юторів Hikvision, Dahua, Ajax та інших.</p>
+          </div>
+        </div>
+        <div class="why-item fade-up">
+          <div class="why-icon">🕐</div>
+          <div>
+            <h4>Підтримка 24/7</h4>
+            <p>Після завершення робіт ви можете звернутися до нас у будь-який час. Оперативно реагуємо на питання.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="container">
+    <span class="stag">Як ми працюємо</span>
+    <h2 class="stitle">Від заявки до результату</h2>
+    <p class="ssub">Чіткий та прозорий процес — ви знаєте, що відбувається на кожному етапі.</p>
+    <div class="steps">
+      <div class="step fade-up">
+        <div class="step-circle">1</div>
+        <h4>Заявка та консультація</h4>
+        <p>Залишаєте заявку або телефонуєте. Консультуємо та уточнюємо задачу.</p>
+      </div>
+      <div class="step fade-up">
+        <div class="step-circle">2</div>
+        <h4>Виїзд і огляд</h4>
+        <p>Безкоштовно виїжджаємо на об'єкт та складаємо кошторис.</p>
+      </div>
+      <div class="step fade-up">
+        <div class="step-circle">3</div>
+        <h4>Договір</h4>
+        <p>Узгоджуємо обсяг, строки та вартість. Підписуємо договір з фіксованою ціною.</p>
+      </div>
+      <div class="step fade-up">
+        <div class="step-circle">4</div>
+        <h4>Монтаж</h4>
+        <p>Виконуємо роботи акуратно та в строк. Налаштовуємо і перевіряємо систему.</p>
+      </div>
+      <div class="step fade-up">
+        <div class="step-circle">5</div>
+        <h4>Здача та гарантія</h4>
+        <p>Здаємо об'єкт, навчаємо роботі з системою та надаємо гарантійний талон.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="cinfo">
+        <span class="stag">Зв'язатися з нами</span>
+        <h2>Отримайте безкоштовну консультацію</h2>
+        <p class="cinfo-desc">Розрахуємо вартість та запропонуємо оптимальне рішення для вашого об'єкта. Виїзд безкоштовно.</p>
+        <div class="clist">
+          <div class="citem">
+            <div class="citem-icon">📞</div>
+            <div>
+              <div class="citem-lbl">Телефон</div>
+              <div class="citem-val"><a href="tel:+380955086469">+380 (95) 508 64 69</a></div>
+            </div>
+          </div>
+          <div class="citem">
+            <div class="citem-icon">📱</div>
+            <div>
+              <div class="citem-lbl">Телефон</div>
+              <div class="citem-val"><a href="tel:+380667049436">+380 (66) 704 94 36</a></div>
+            </div>
+          </div>
+          <div class="citem">
+            <div class="citem-icon">💬</div>
+            <div>
+              <div class="citem-lbl">Telegram</div>
+              <div class="citem-val"><a href="https://t.me/ast_security_kyiv" target="_blank">@ast_security_kyiv</a></div>
+            </div>
+          </div>
+          <div class="citem">
+            <div class="citem-icon">📍</div>
+            <div>
+              <div class="citem-lbl">Адреса</div>
+              <div class="citem-val">просп. Повітряних Сил, 72, оф. 45, Київ</div>
+            </div>
+          </div>
+          <div class="citem">
+            <div class="citem-icon">✉️</div>
+            <div>
+              <div class="citem-lbl">Email</div>
+              <div class="citem-val"><a href="mailto:ast2000@i.ua">ast2000@i.ua</a></div>
+            </div>
+          </div>
+          <div class="citem">
+            <div class="citem-icon">🕐</div>
+            <div>
+              <div class="citem-lbl">Режим роботи</div>
+              <div class="citem-val">Пн–Сб, 8:00 – 20:00</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="map-wrap">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2540.4!2d30.4497!3d50.4021!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d4cf3b5e6b0001%3A0x1!2z0L_RgNC-0YHQvy4g0J_QvtCy0ZbRgtGA0Y_QvdC40YUg0KHQuNC7LCA3Miwg0JrQuNGX0LI!5e0!3m2!1suk!2sua!4v1700000000000!5m2!1suk!2sua"
+          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+      <div class="cform">
+        <h3>Залишити заявку</h3>
+        <p>Передзвонимо протягом 30 хвилин у робочий час</p>
+        <form id="cform" onsubmit="submitFormspree(event,'cform','csuccess')">
+          <input type="hidden" name="_subject" value="Нова заявка з сайту АСТ"/>
+          <input type="hidden" name="Форма" value="Сторінка контактів"/>
+          <div class="fg"><label>Ваше ім'я</label><input type="text" name="name" placeholder="Іван Петренко" required/></div>
+          <div class="fg"><label>Телефон *</label><input type="tel" name="phone" placeholder="+380 __ ___ __ __" required/></div>
+          <div class="fg">
+            <label>Послуга</label>
+            <select name="service">
+              <option value="">Оберіть послугу</option>
+              <option>Відеоспостереження</option>
+              <option>Охоронна сигналізація</option>
+              <option>Контроль доступу</option>
+              <option>Електропроводка</option>
+              <option>Електрощити та автомати</option>
+              <option>Комплексний проєкт</option>
+            </select>
+          </div>
+          <div class="fg"><label>Коментар</label><textarea name="message" placeholder="Опишіть ваш об'єкт або задачу..."></textarea></div>
+          <button type="submit" class="form-btn">Надіслати заявку →</button>
+          <div class="or-line">або</div>
+          <a href="https://t.me/ast_security_kyiv" target="_blank" class="tg-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L8.48 14.46l-2.95-.924c-.64-.203-.654-.64.135-.954l11.57-4.461c.537-.194 1.006.131.827.127z"/></svg>
+            Написати в Telegram
+          </a>
+          <div class="form-success" id="csuccess">✅ Дякуємо! Зв'яжемося найближчим часом.</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="footer-logo">А<span>С</span>Т</span>
+        <p class="footer-tagline">Безпека та електромонтаж<br>у Києві з 2004 року</p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Послуги</div>
+        <a href="#services">Відеоспостереження</a>
+        <a href="#services">Охоронна сигналізація</a>
+        <a href="#services">Контроль доступу</a>
+        <a href="#services">Електропроводка</a>
+        <a href="#services">Електрощити</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Контакти</div>
+        <a href="tel:+380955086469">+380 (95) 508 64 69</a>
+        <a href="tel:+380667049436">+380 (66) 704 94 36</a>
+        <a href="mailto:ast2000@i.ua">ast2000@i.ua</a>
+        <a href="https://t.me/ast_security_kyiv" target="_blank">Telegram</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Адреса</div>
+        <p style="color:rgba(255,255,255,.45);font-size:.85rem;line-height:1.6">просп. Повітряних Сил, 72<br>офіс 45, Київ<br><br>Пн–Сб: 8:00 – 20:00</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 АСТ — Системи безпеки та електромонтаж</p>
+      <p>Гарантія на всі роботи · Безкоштовний виїзд · Київ та область</p>
+    </div>
+  </div>
+</footer>
+
+<!-- STICKY MOBILE CTA -->
+<div class="sticky-cta">
+  <a href="tel:+380955086469" class="scta-call">📞 Зателефонувати</a>
+  <a href="https://t.me/ast_security_kyiv" target="_blank" class="scta-tg">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L8.48 14.46l-2.95-.924c-.64-.203-.654-.64.135-.954l11.57-4.461c.537-.194 1.006.131.827.127z"/></svg>
+    Telegram
+  </a>
+</div>
+
+<script>
+// Formspree endpoint — замініть xdavjyzl на ваш ID з formspree.io
+const FORMSPREE_URL = 'https://formspree.io/f/xdavjyzl';
+
+async function submitFormspree(e, formId, successId) {
+  e.preventDefault();
+  const form = e.target;
+  const btn = form.querySelector('button[type=submit]');
+  const origText = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = '⏳ Надсилаємо...';
+
+  try {
+    const resp = await fetch(FORMSPREE_URL, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    });
+    const data = await resp.json();
+    if (data.ok) {
+      document.getElementById(successId).style.display = 'block';
+      form.reset();
+      btn.innerHTML = '✅ Надіслано!';
+    } else {
+      btn.disabled = false;
+      btn.innerHTML = origText;
+      alert('Помилка відправки. Будь ласка, зателефонуйте нам.');
+    }
+  } catch(err) {
+    btn.disabled = false;
+    btn.innerHTML = origText;
+    alert('Немає з'єднання. Спробуйте ще раз або зателефонуйте.');
+  }
+}
+
+// Active nav highlight
+const secs = document.querySelectorAll('section[id]');
+const navAs = document.querySelectorAll('nav a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  secs.forEach(s => { if (window.scrollY >= s.offsetTop - 90) cur = s.id; });
+  navAs.forEach(a => { a.style.color = a.getAttribute('href') === '#'+cur ? 'var(--navy)' : ''; });
+}, {passive:true});
+
+// Scroll animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, {threshold: 0.12});
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// Hero image ken burns
+document.querySelector('.hero-img').classList.add('loaded');
+
+// Number counter animation
+function animateCounter(el, target, suffix='') {
+  let start = 0;
+  const duration = 1800;
+  const step = timestamp => {
+    if (!start) start = timestamp;
+    const progress = Math.min((timestamp - start) / duration, 1);
+    const val = Math.floor(progress * target);
+    el.textContent = val + suffix;
+    if (progress < 1) requestAnimationFrame(step);
+    else el.textContent = target + suffix;
+  };
+  requestAnimationFrame(step);
+}
+const stripObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      document.querySelectorAll('.strip-num').forEach(el => {
+        const text = el.textContent;
+        if (text.includes('20')) animateCounter(el, 20, '+');
+        else if (text.includes('500')) animateCounter(el, 500, '+');
+        else if (text.includes('12')) animateCounter(el, 12, ' міс');
+      });
+      stripObserver.disconnect();
+    }
+  });
+}, {threshold: 0.5});
+const strip = document.querySelector('.strip');
+if (strip) stripObserver.observe(strip);
+</script>
+</body>
+</html>
