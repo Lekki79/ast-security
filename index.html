@@ -455,9 +455,10 @@ footer{background:var(--navy);padding:64px 28px 32px;border-top:3px solid var(--
     <div class="hero-form-box">
       <h3>Безкоштовна консультація</h3>
       <p>Відповімо протягом 30 хвилин</p>
-      <form id="hform" onsubmit="submitFormspree(event,'hform','hsuccess')">
+      <form id="hform" action="https://formspree.io/f/xdavjyzl" method="POST">
         <input type="hidden" name="_subject" value="Нова заявка з сайту АСТ"/>
         <input type="hidden" name="Форма" value="Головна сторінка"/>
+        <input type="hidden" name="_next" value="https://lekki79.github.io/ast-security/?sent=1"/>
         <div class="fg">
           <label>Ваше ім'я</label>
           <input type="text" name="name" placeholder="Іван Петренко" required/>
@@ -752,9 +753,10 @@ footer{background:var(--navy);padding:64px 28px 32px;border-top:3px solid var(--
       <div class="cform">
         <h3>Залишити заявку</h3>
         <p>Передзвонимо протягом 30 хвилин у робочий час</p>
-        <form id="cform" onsubmit="submitFormspree(event,'cform','csuccess')">
+        <form id="cform" action="https://formspree.io/f/xdavjyzl" method="POST">
           <input type="hidden" name="_subject" value="Нова заявка з сайту АСТ"/>
           <input type="hidden" name="Форма" value="Сторінка контактів"/>
+          <input type="hidden" name="_next" value="https://lekki79.github.io/ast-security/?sent=1"/>
           <div class="fg"><label>Ваше ім'я</label><input type="text" name="name" placeholder="Іван Петренко" required/></div>
           <div class="fg"><label>Телефон *</label><input type="tel" name="phone" placeholder="+380 __ ___ __ __" required/></div>
           <div class="fg">
@@ -828,39 +830,7 @@ footer{background:var(--navy);padding:64px 28px 32px;border-top:3px solid var(--
 </div>
 
 <script>
-// Formspree endpoint — замініть xdavjyzl на ваш ID з formspree.io
-const FORMSPREE_URL = 'https://formspree.io/f/xdavjyzl';
-
-async function submitFormspree(e, formId, successId) {
-  e.preventDefault();
-  const form = e.target;
-  const btn = form.querySelector('button[type=submit]');
-  const origText = btn.innerHTML;
-  btn.disabled = true;
-  btn.innerHTML = '⏳ Надсилаємо...';
-
-  try {
-    const resp = await fetch(FORMSPREE_URL, {
-      method: 'POST',
-      body: new FormData(form),
-      headers: { 'Accept': 'application/json' }
-    });
-    const data = await resp.json();
-    if (data.ok) {
-      document.getElementById(successId).style.display = 'block';
-      form.reset();
-      btn.innerHTML = '✅ Надіслано!';
-    } else {
-      btn.disabled = false;
-      btn.innerHTML = origText;
-      alert('Помилка відправки. Будь ласка, зателефонуйте нам.');
-    }
-  } catch(err) {
-    btn.disabled = false;
-    btn.innerHTML = origText;
-    alert('Немає зʼєднання. Спробуйте ще раз або зателефонуйте.');
-  }
-}
+// Формспрі: відправка через HTML POST напряму на formspree.io/f/xdavjyzl
 
 // Active nav highlight
 const secs = document.querySelectorAll('section[id]');
