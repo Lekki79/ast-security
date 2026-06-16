@@ -455,10 +455,9 @@ footer{background:var(--navy);padding:64px 28px 32px;border-top:3px solid var(--
     <div class="hero-form-box">
       <h3>Безкоштовна консультація</h3>
       <p>Відповімо протягом 30 хвилин</p>
-      <form id="hform" action="https://formspree.io/f/xdavjyzl" method="POST">
+      <form id="hform" action="https://formspree.io/f/xdavjyzl" method="POST" onsubmit="sendForm(event,this,'hthank')">
         <input type="hidden" name="_subject" value="Нова заявка з сайту АСТ"/>
         <input type="hidden" name="Форма" value="Головна сторінка"/>
-        <input type="hidden" name="_next" value="https://lekki79.github.io/ast-security/?sent=1"/>
         <div class="fg">
           <label>Ваше ім'я</label>
           <input type="text" name="name" placeholder="Іван Петренко" required/>
@@ -487,6 +486,12 @@ footer{background:var(--navy);padding:64px 28px 32px;border-top:3px solid var(--
         </a>
         <div class="form-success" id="hsuccess">✅ Дякуємо! Зв'яжемося найближчим часом.</div>
       </form>
+      <div id="hthank" style="display:none;text-align:center;padding:32px 20px">
+        <div style="font-size:3rem;margin-bottom:16px">✅</div>
+        <h3 style="font-size:1.4rem;font-weight:800;color:#0f1c2e;margin-bottom:10px">Дякуємо за заявку!</h3>
+        <p style="color:#6b7a90;font-size:.95rem;margin-bottom:20px;line-height:1.6">Ми зв&#x2019;яжемося з вами<br>протягом <strong style="color:#ff6b2b">30 хвилин</strong> у робочий час.</p>
+        <a href="tel:+380955086469" style="display:inline-block;background:#ff6b2b;color:#fff;padding:12px 28px;border-radius:9px;text-decoration:none;font-weight:700;font-size:.95rem">📞 Зателефонувати зараз</a>
+      </div>
     </div>
   </div>
 </section>
@@ -753,10 +758,9 @@ footer{background:var(--navy);padding:64px 28px 32px;border-top:3px solid var(--
       <div class="cform">
         <h3>Залишити заявку</h3>
         <p>Передзвонимо протягом 30 хвилин у робочий час</p>
-        <form id="cform" action="https://formspree.io/f/xdavjyzl" method="POST">
+        <form id="cform" action="https://formspree.io/f/xdavjyzl" method="POST" onsubmit="sendForm(event,this,'cthank')">
           <input type="hidden" name="_subject" value="Нова заявка з сайту АСТ"/>
           <input type="hidden" name="Форма" value="Сторінка контактів"/>
-          <input type="hidden" name="_next" value="https://lekki79.github.io/ast-security/?sent=1"/>
           <div class="fg"><label>Ваше ім'я</label><input type="text" name="name" placeholder="Іван Петренко" required/></div>
           <div class="fg"><label>Телефон *</label><input type="tel" name="phone" placeholder="+380 __ ___ __ __" required/></div>
           <div class="fg">
@@ -780,6 +784,12 @@ footer{background:var(--navy);padding:64px 28px 32px;border-top:3px solid var(--
           </a>
           <div class="form-success" id="csuccess">✅ Дякуємо! Зв'яжемося найближчим часом.</div>
         </form>
+          <div id="cthank" style="display:none;text-align:center;padding:32px 20px">
+            <div style="font-size:3rem;margin-bottom:16px">✅</div>
+            <h3 style="font-size:1.4rem;font-weight:800;color:#0f1c2e;margin-bottom:10px">Заявку отримано!</h3>
+            <p style="color:#6b7a90;font-size:.95rem;margin-bottom:20px;line-height:1.6">Наш менеджер зателефонує вам<br>протягом <strong style="color:#ff6b2b">30 хвилин</strong>.</p>
+            <p style="color:#6b7a90;font-size:.85rem">Або телефонуйте самі:<br><a href="tel:+380955086469" style="color:#ff6b2b;font-weight:700">+380 (95) 508 64 69</a></p>
+          </div>
       </div>
     </div>
   </div>
@@ -830,7 +840,35 @@ footer{background:var(--navy);padding:64px 28px 32px;border-top:3px solid var(--
 </div>
 
 <script>
-// Формспрі: відправка через HTML POST напряму на formspree.io/f/xdavjyzl
+// Formspree AJAX — відправка без редиректу
+async function sendForm(e, form, thankId) {
+  e.preventDefault();
+  const btn = form.querySelector('button[type=submit]');
+  const origHTML = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = '⏳ Надсилаємо...';
+
+  try {
+    const resp = await fetch('https://formspree.io/f/xdavjyzl', {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    });
+    const data = await resp.json();
+    if (data.ok) {
+      form.style.display = 'none';
+      document.getElementById(thankId).style.display = 'block';
+    } else {
+      btn.disabled = false;
+      btn.innerHTML = origHTML;
+      alert('Помилка. Будь ласка, зателефонуйте нам: +380 95 508 64 69');
+    }
+  } catch(err) {
+    // fallback: submit normally
+    form.removeAttribute('onsubmit');
+    form.submit();
+  }
+}
 
 // Active nav highlight
 const secs = document.querySelectorAll('section[id]');
